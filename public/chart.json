@@ -1,0 +1,48 @@
+[
+    {
+      "id": 1,
+      "name": "Rahim",
+      "subjects": {
+        "math": 85,
+        "physics": 78,
+        "higherMath": 90
+      }
+    },
+    {
+      "id": 2,
+      "name": "Karim",
+      "subjects": {
+        "math": 72,
+        "physics": 65,
+        "higherMath": 70
+      }
+    },
+    {
+      "id": 3,
+      "name": "Jamal",
+      "subjects": {
+        "math": 95,
+        "physics": 88,
+        "higherMath": 92
+      }
+    },
+    {
+      "id": 4,
+      "name": "Selim",
+      "subjects": {
+        "math": 60,
+        "physics": 55,
+        "higherMath": 58
+      }
+    },
+    {
+      "id": 5,
+      "name": "Rafi",
+      "subjects": {
+        "math": 77,
+        "physics": 80,
+        "higherMath": 75
+      }
+    }
+  ]
+  

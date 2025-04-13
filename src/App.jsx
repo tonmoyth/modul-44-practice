@@ -1,9 +1,11 @@
 import { Menu, X } from 'lucide-react';
 import './App.css'
 import Navbar from './Navbar';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import Pricing from './component/pricing/Pricing';
 import { Pie, PieChart } from 'recharts';
+import axios from 'axios';
+import Chart from './component/chart/Chart';
 
 
 const navItems = [
@@ -54,6 +56,8 @@ const StudentMarks = [
 
 
 const pricingData = fetch('pricing.json').then(res => res.json());
+
+const charData = axios.get('chart.json');
 function App() {
     const [open,setOpen] = useState(false);
 
@@ -86,10 +90,10 @@ function App() {
         <Pricing pricingData={pricingData}></Pricing>
         {/* rechart */}
         
-        <PieChart width={730} height={230}>
+        <Suspense fallback={<h1>Loading...</h1>}>
+        <Chart charData={charData}></Chart>
 
-          <Pie data={StudentMarks} dataKey="math" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#8884d8"></Pie>
-        </PieChart>
+        </Suspense>
          
         
       </main>
