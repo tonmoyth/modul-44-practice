@@ -3,6 +3,7 @@ import './App.css'
 import Navbar from './Navbar';
 import { useState } from 'react';
 import Pricing from './component/pricing/Pricing';
+import { Line, LineChart, XAxis, YAxis } from 'recharts';
 
 const navItems = [
   { id: 1, name: "Home", path: "/" },
@@ -11,6 +12,45 @@ const navItems = [
   { id: 4, name: "Portfolio", path: "/portfolio" },
   { id: 5, name: "Contact", path: "/contact" }
 ];
+
+const StudentMarks = [
+  {
+    id: 1,
+    name: "Rahim",
+    math: 85,
+    physics: 78,
+    higherMath: 92
+  },
+  {
+    id: 2,
+    name: "Karim",
+    math: 75,
+    physics: 82,
+    higherMath: 88
+  },
+  {
+    id: 3,
+    name: "Jamal",
+    math: 90,
+    physics: 85,
+    higherMath: 80
+  },
+  {
+    id: 4,
+    name: "Sabbir",
+    math: 65,
+    physics: 70,
+    higherMath: 72
+  },
+  {
+    id: 5,
+    name: "Nayeem",
+    math: 88,
+    physics: 91,
+    higherMath: 95
+  }
+];
+
 
 const pricingData = fetch('pricing.json').then(res => res.json());
 function App() {
@@ -42,6 +82,14 @@ function App() {
       
       <main>
         <Pricing pricingData={pricingData}></Pricing>
+        {/* rechart */}
+
+        <LineChart width={500} height={500} data={StudentMarks}>
+          <Line dataKey='math' stroke='#8884d8'></Line>
+          <XAxis dataKey='name'></XAxis>
+          <YAxis></YAxis>
+
+        </LineChart>
       </main>
     </>
   )
