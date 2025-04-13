@@ -3,7 +3,7 @@ import './App.css'
 import Navbar from './Navbar';
 import { useState } from 'react';
 import Pricing from './component/pricing/Pricing';
-import { Line, LineChart, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis, } from 'recharts';
 
 const navItems = [
   { id: 1, name: "Home", path: "/" },
@@ -58,6 +58,42 @@ function App() {
 
     const navLink =  navItems.map(route => <Navbar key={route.id} nav={route}></Navbar>);
 
+    const getIntroOfPage = (label) => {
+      if (label === 'Page A') {
+        return "Page A is about men's clothing";
+      }
+      if (label === 'Page B') {
+        return "Page B is about women's dress";
+      }
+      if (label === 'Page C') {
+        return "Page C is about women's bag";
+      }
+      if (label === 'Page D') {
+        return 'Page D is about household goods';
+      }
+      if (label === 'Page E') {
+        return 'Page E is about food';
+      }
+      if (label === 'Page F') {
+        return 'Page F is about baby food';
+      }
+      return '';
+    };
+
+    const CustomTooltip = ({ active, payload, label }) => {
+      if (active && payload && payload.length) {
+        console.log(active, payload, label)
+        return (
+          <div className="custom-tooltip">
+            <p className="label">{`${label} : ${payload[0].value}`}</p>
+            <p className="intro">{getIntroOfPage(label)}</p>
+            <p className="desc">Anything you want can be displayed here.</p>
+          </div>
+        );
+      }
+    }
+
+
   return (
     <>
      <nav className='flex justify-between w-11/12 mx-auto pt-4'>
@@ -84,12 +120,19 @@ function App() {
         <Pricing pricingData={pricingData}></Pricing>
         {/* rechart */}
 
-        <LineChart width={500} height={500} data={StudentMarks}>
-          <Line dataKey='math' stroke='#8884d8'></Line>
+          <div className=' bg-amber-300'>
+          <ResponsiveContainer width='100%' height={400}>
+          <BarChart data={StudentMarks}>
+          <CartesianGrid strokeDasharray="3 3"></CartesianGrid>
           <XAxis dataKey='name'></XAxis>
           <YAxis></YAxis>
-
-        </LineChart>
+          <Tooltip content={<CustomTooltip></CustomTooltip>}></Tooltip>
+          <Legend></Legend>
+            <Bar dataKey='math' barSize={20} fill='#8884d8'></Bar>
+          </BarChart>
+        </ResponsiveContainer>
+          </div>
+        
       </main>
     </>
   )
